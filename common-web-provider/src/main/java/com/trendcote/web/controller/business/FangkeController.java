@@ -31,7 +31,7 @@ public class FangkeController {
 
 
     /**
-     * 跳转页面
+     * 跳转页面路径
      * @return
      */
     @RequestMapping("/manager")
