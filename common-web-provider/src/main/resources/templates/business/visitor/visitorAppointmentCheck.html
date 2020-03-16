@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<body>
+<div style="padding: 15px">
+    <form id="visitorAppointmentDetail" method="post">
+        <table>
+            <tr>
+                <td>公司名称</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAppointmentInfo.personCompany}" /></td>
+                <td>访客姓名</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAppointmentInfo.personName}" /></td>
+                <td>性别</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAppointmentInfo.personGender}" /></td>
+            </tr>
+            <tr>
+                <td>职务</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAppointmentInfo.personDuty}" /></td>
+                <td>身份证号</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAppointmentInfo.personCode}" /></td>
+                <td>手机号</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAppointmentInfo.personPhone}" /></td>
+            </tr>
+            <tr>
+                <td>预约开始时间</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${#dates.format(visitorAppointmentInfo.beginTime,'yyyy-MM-dd hh:mm:ss')}" /></td>
+                <td>预约结束时间</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${#dates.format(visitorAppointmentInfo.endTime,'yyyy-MM-dd hh:mm:ss')}" /></td>
+            </tr>
+            <!--<tr>
+                <td>身份证照片</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAppointmentInfo.personCardPhoto}" /></td>
+                <td>头像照片</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAppointmentInfo.personPhoto}" /></td>
+            </tr>-->
+            <tr>
+                <td>被访者</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAppointmentInfo.staffName}" /></td>
+                <td>部门</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAppointmentInfo.staffDept}" /></td>
+                <td>手机</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAppointmentInfo.staffPhone}" /></td>
+            </tr>
+            <tr>
+                <td>事由</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAppointmentInfo.appointmentReason}" /></td>
+                <td>审批备注</td> <td><input class="easyui-textbox" data-options="" th:value="${visitorAppointmentInfo.appointmentRemark}" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</div>
+</body>
+</html>

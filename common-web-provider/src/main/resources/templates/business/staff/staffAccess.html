@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <div th:replace="inc :: htmlhead"></div>
+    <script type="text/javascript" th:src="@{/jslib/js/business/staffAccess.js}"></script>
+</head>
+<body>
+<div id="toolbar" style="display: none;">
+    <form id="searchForm">
+        <!--身份证号:&nbsp;<input class="easyui-textbox" name="staffCode" style="width:110px;"/>&nbsp;-->
+        员工姓名:&nbsp;<input class="easyui-textbox" id="staffName" name="staffName" style="width:110px;"/>&nbsp;
+        员工工号:&nbsp;<input class="easyui-textbox" id="staffCode" name="staffCode" style="width:110px;"/>&nbsp;
+        进入时间:&nbsp;<input id="newBeginTime" name= "newBeginTime" class="easyui-datetimebox" style="width:140px;" data-options="editable:false,">
+        - <input name="newEndTime" id="newEndTime" class="easyui-datetimebox" style="width:140px" data-options="editable:false">
+      <!--  设备名称:&nbsp;<input name="outDeviceId" id="outDeviceId" style="width:140px" class="easyui-textbox">-->
+        <a onclick="searchFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">查询</a>
+        <a onclick="chearFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">清空</a>
+        <!--<a onclick="detailFun();"  shiro:hasPermission="/staffAccess/detail" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-look'">详情</a>-->
+        <a onclick="exportFun();"  href="javascript:void(0);"  class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-redo'">导出</a>
+    </form>
+    <!--<a onclick="deleteFun();"  shiro:hasPermission="/staffAccess/delete" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'">删除</a>-->
+</div>
+<table id="dataGrid" data-options="fit:true,border:false"></table>
+
+
+<script>
+    function Today1()
+    {
+        var outStr="";
+        var currentDate = new Date();
+
+        var month = currentDate.getMonth()+1;
+        var day = currentDate.getDate();
+
+        outStr = currentDate.getFullYear();
+        if ( month < 10 )
+        {
+            outStr = outStr +"-0"+month;
+        }else
+        {
+            outStr = outStr +"-"+month;
+        }
+        if ( day < 10 )
+        {
+            outStr = outStr +"-0"+day;
+        }else
+        {
+            outStr = outStr +"-"+day;
+        }
+        return outStr;
+
+    }
+    $("#newBeginTime").val(Today1()+" 00:00:00");
+    $("#newEndTime").val(Today1()+" 23:59:59");
+</script>
+</body>
+</html>

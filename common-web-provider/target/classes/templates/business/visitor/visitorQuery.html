@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <div th:replace="inc :: htmlhead"></div>
+    <script type="text/javascript" th:src="@{/jslib/js/business/visitor.js}"></script>
+</head>
+<body>
+
+<div id="toolbar" style="display: none;">
+    <form id="searchForm">
+        姓名:&nbsp;<input class="easyui-textbox" name="visitorName" style="width:110px;"/>&nbsp;
+        <!--手机号码:&nbsp;<input class="easyui-textbox" name="mobile" style="width:110px;"/>&nbsp;-->
+        <a onclick="searchFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">查询</a>
+        <a onclick="chearFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">清空</a>
+        <!--<a onclick="syncFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'">同步</a>-->
+    </form>
+</div>
+
+<table id="dataGrid" data-options="fit:true,border:false"></table>
+
+</body>
+</html>

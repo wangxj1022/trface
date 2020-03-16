@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<body>
+<div style="padding: 15px;">
+    <form id="entryDetail" method="post">
+        <table>
+            <tr>
+                <td>出入口编号</td>
+                <td><input name="entryId" class="easyui-textbox" data-options="prompt:'例如:E001',required:true,validType:'length[1,4]',readonly:'readonly' " th:value="${entry.entryId}" /></td>
+                <td>出入口名称</td>
+                <td><input name="entryName" class="easyui-textbox" data-options="required:true,validType:'length[1,10]' " th:value="${entry.entryName}"/></td>
+            </tr>
+
+            <tr>
+                <td>出入口类别</td>
+                <td>
+                    <select id="entryCategory" name="entryCategory" style="width: 165px;" class="easyui-combobox" data-options="required:true, editable:false, panelHeight:'auto'" th:field="${entry.entryCategory}">
+                        <option th:selected="${entry.entryCategory == '0' }" value="0">员工通道</option>
+                        <option th:selected="${entry.entryCategory == '1' }" value="1">访客通道</option>
+                        <option th:selected="${entry.entryCategory == '2' }" value="2">员工和访客通道</option>
+                    </select>
+                </td>
+                <td>进出类型</td>
+                <td>
+                    <select id="entryType" name="entryType" style="width: 165px;" class="easyui-combobox" data-options="required:true, editable:false, panelHeight:'auto'" th:field="${entry.entryType}">
+                        <option th:selected="${entry.entryType == '0' }" value="0">人员</option>
+                        <option th:selected="${entry.entryType == '1' }" value="1">车辆</option>
+                        <option th:selected="${entry.entryType == '2' }" value="2">人员和车辆</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>岗亭电话</td>
+                <td><input name="entryPhone" type="text" class="easyui-textbox" th:value="${entry.entryPhone}" /></td>
+            </tr>
+            <tr>
+                <td>备注</td>
+                <td><input name="remark" type="text" class="easyui-textbox" th:value="${entry.remark}"/></td>
+            </tr>
+
+            <!--其他字段隐藏-->
+            <div style="display: none">
+                <!--根据ID进行更新-->
+                <input name="id" th:value="${entry.id}"/>
+            </div>
+
+        </table>
+    </form>
+</div>
+</div>
+</body>
+</html>

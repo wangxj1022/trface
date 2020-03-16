@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div style="padding: 10px;">
+    <form id="resourceAddForm" method="post">
+        <div style="margin-bottom:10px">
+            <input type="hidden"  name="pid" th:value="${pid}"/>
+            <input class="easyui-textbox" id="name" name="name" style="width: 300px;" data-options="label:'资源名称',required:true,validType:'length[1,50]'"/>
+        </div>
+        <div style="margin-bottom:10px">
+            <select class="easyui-combobox" style="width: 300px;" id="resourceType" name="resourceType" label="资源类型">
+                <option value="0">菜单</option>
+                <option value="1">按钮</option>
+            </select>
+        </div>
+        <div style="margin-bottom:10px">
+            <input class="easyui-textbox" name="url" style="width: 300px;" data-options="label:'资源路径',validType:'length[1,90]'"/>
+        </div>
+        <div style="margin-bottom:10px">
+            <input class="easyui-numberspinner" id="seq" name="seq" style="width: 300px;" data-options="label:'序列',required:true,editable:false,validType:'length[1,2]'"/>
+        </div>
+        <div style="margin-bottom:10px">
+            <input class="easyui-textbox" style="width:300px" name="description" data-options="label:'描述',validType:'length[1,200]'"></input>
+        </div>
+    </form>
+</div>
+</body>
+</html>

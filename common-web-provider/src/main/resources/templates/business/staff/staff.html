@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <div th:replace="inc :: htmlhead"></div>
+    <script type="text/javascript" th:src="@{/jslib/js/business/staff.js}"></script>
+</head>
+<body>
+<div id="toolbar" style="display: none;">
+    <form id="searchForm">
+        员工工号:<input class="easyui-textbox" name="staffId" style="width:110px;"/>&nbsp;
+        状态:&nbsp;<select name="status" id="status" style="width:110px;" class="easyui-combobox" data-options="editable:false,
+       valueField: 'value',
+		textField: 'text',
+		data: [{
+			value: '0',
+			text: '未审核'
+		},{
+			value: '1',
+			text: '审核通过'
+		},{
+			value: '2',
+			text: '离职'
+		}]">
+        </select>&nbsp;
+        创建时间:&nbsp;<input id="newBeginTime" name= "newBeginTime" class="easyui-datetimebox" style="width:140px;" data-options="editable:false,">
+        - <input name="newEndTime" id="newEndTime" class="easyui-datetimebox" style="width:140px" data-options="editable:false">
+        <a onclick="searchFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">查询</a>
+        <a onclick="chearFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">清空</a>
+    </form>
+    <!--<a onclick="addFun();"  shiro:hasPermission="/staff/add" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>-->
+    <a onclick="detailFun();"  shiro:hasPermission="/staff/detail" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-look'">详情</a>
+    <a onclick="checkFun();"  shiro:hasPermission="/staff/check" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-ok'">审核</a>
+    <a onclick="leaveFun();"  shiro:hasPermission="/staff/leave" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-no'">离职</a>
+</div>
+<table id="dataGrid" data-options="fit:true,border:false"></table>
+
+</body>
+</html>

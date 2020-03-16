@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+    <head>
+        <div th:replace="inc :: htmlhead"></div>
+        <script type="text/javascript" th:src="@{/jslib/js/business/syncVisitorLog.js}"></script>
+    </head>
+<body>
+
+<table id="dataGrid" data-options="fit:true,border:false"></table>
+<div id="toolbar" style="display: none;">
+    <form id="searchForm">
+        创建时间:&nbsp;<input id="newBeginTime" name= "newBeginTime" class="easyui-datetimebox" style="width:150px" data-options="editable:false"/>
+        - <input name="newEndTime" id="newEndTime" class="easyui-datetimebox" style="width:150px" data-options="editable:false"/>
+        <a onclick="searchFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">查询</a>
+        <a onclick="chearFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">清空</a>
+    </form>
+    <a onclick="delFun(0);"  href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'">删除</a>
+    <a onclick="delFun(1);"  href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'">批量删除</a>
+</div>
+<div id="editDiv" class="easyui-dialog" closed="true" style="width:600px;height:400px;padding:10px 20px" >
+    <table data-options="fit:true,border:false">
+        <td>
+            <input id="title" name='title' class="easyui-textbox" data-options="label:'标题'"/>
+        </td>
+        <td>
+         <textarea id="detail" name="detail" style="visibility:hidden;">
+         </textarea>
+        </td>
+    </table>
+</table>
+</div>
+
+
+<script>
+    function Today1()
+    {
+        var outStr="";
+        var currentDate = new Date();
+
+        var month = currentDate.getMonth()+1;
+        var day = currentDate.getDate();
+
+        outStr = currentDate.getFullYear();
+        if ( month < 10 )
+        {
+            outStr = outStr +"-0"+month;
+        }else
+        {
+            outStr = outStr +"-"+month;
+        }
+        if ( day < 10 )
+        {
+            outStr = outStr +"-0"+day;
+        }else
+        {
+            outStr = outStr +"-"+day;
+        }
+        return outStr;
+
+    }
+    $("#newBeginTime").val(Today1()+" 00:00:00");
+    $("#newEndTime").val(Today1()+" 23:59:59");
+</script>
+</body>
+</html>

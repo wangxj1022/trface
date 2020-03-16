@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <div th:replace="inc :: htmlhead"></div>
+    <script type="text/javascript" th:src="@{/jslib/js/business/serviceStaff.js}"></script>
+    <script type="text/javascript" th:src="@{/jslib/js/home/socket.io.min.js}"></script>
+    <style>
+        .cropper-modal {
+            background: url('https://ok.166.net/gameyw-misc/opd/squash/20191028/152551-m37snfsyu1.png') center no-repeat;
+            background-size: 100% 100%;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<div id="toolbar" style="display: none;">
+    <form id="searchForm" enctype="multipart/form-data" method="post">
+        员工姓名：<input class="easyui-textbox" name="serviceStaffName" style="width:110px;"/>&nbsp;
+        <!--手机号:<input class="easyui-textbox" name="serviceStaffTel" style="width:110px;"/>&nbsp;-->
+        员工工号：<input class="easyui-textbox" name="serviceStaffIcNo" style="width:110px;"/>&nbsp;
+        <a onclick="searchFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">查询</a>
+        <a onclick="chearFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">清空</a>
+        <a onclick="delFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'">删除</a>
+        <a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">新增</a>
+        <a onclick="quanbuFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">全部重发</a>
+        <!--<a onclick="ExcelImport();"  href="javascript:void(0);"  class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-undo'">导入</a>-->
+        <input id="lefile" type="file" style="display:none" name="file">
+        <div>
+            <input id="photoCover"  type="text" readonly="true" class="input-large" style="border-radius:30px; width:150px; height:22px; border:#CCC 1px solid;margin:10px 10px;  margin-left: 25px">
+            <a class="easyui-linkbutton" onclick="$('input[id=lefile]').click();" style="color: #1c4587">选择文件</a>
+            <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-undo'" onclick="exceltodata()">导入</a>
+        </div>
+    </form>
+</div>
+<!--<div>
+    <form method="post" enctype="multipart/form-data" id="tf">
+        <input id="lefile" type="file" style="display:none" name="file">
+        <div>
+            <input id="photoCover"  type="text" readonly="true" class="input-large" style="width:150px;height:24px;padding: 5px 0 5px 10px; border-radius: 25px;  margin-left: 25px">
+            <a class="easyui-linkbutton" onclick="$('input[id=lefile]').click();" style="color: #1c4587">选择文件</a>
+            <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-undo'" onclick="exceltodata()">导入</a>
+        </div>
+    </form>
+</div>-->
+<table id="dataGrid" data-options="fit:true,border:false"></table>
+
+
+<!-- 第一层弹窗:人员信息添加  -->
+<div id="dd1" class="easyui-dialog" title="添加人员" style="width:600px;height:450px"
+     data-options="iconCls:'icon-save',resizable:true,modal:true,buttons:[{
+            text:'保存',
+            handler:function(){
+                $('#serviceStaffAdd').submit();
+            }
+     },{
+            text:'取消',
+            handler:function(){
+                $('#dd1').dialog('close');
+            }
+     }] ">
+
+    <form id="serviceStaffAdd" method="post">
+
+        <table>
+            <tr>
+                <td>员工部门</td>
+                <td>
+                    <select id="serviceStaffDept" name="serviceStaffDept" style="width: 200px;" class="easyui-combobox" data-options="valueField:'id', textField:'text', panelHeight:'350px'">
+                    </select>
+                </td>
+                <td>姓名</td>
+                <td><input id="serviceStaffName" name="serviceStaffName"  style="width: 200px;" class="easyui-textbox" data-options="required: true , validType:'length[1,10]' " /></td>
+            </tr>
+
+            <tr>
+                <td>员工编号</td>
+                <td><input name="serviceStaffNumber" class="easyui-textbox" style="width: 200px;" data-options="validType:'length[1,20]' "/></td>
+                <td>员工工号</td>
+                <td><input name="serviceStaffIcNo" class="easyui-textbox" style="width: 200px;" data-options="required: true,validType:'length[1,20]' " /></td>
+            </tr>
+
+            <tr>
+                <td>是否外勤</td>
+                <td>
+                    <select id="isOutWork" name="isOutWork" style="width: 200px;" class="easyui-combobox" data-options="valueField:'id', textField:'text', panelHeight:'80px',panelHeight:'auto'">
+                    <!--    <option value="2">无</option>-->
+                        <option value="0" selected="selected">内勤</option>
+                        <option value="1">外勤</option>
+                    </select>
+                </td>
+                <td>手机号</td>
+                <td><input name="serviceStaffTel" class="easyui-textbox" style="width: 200px;" data-options="validType:'length[1,11]' "/></td>
+            </tr>
+            <tr>
+                <td>员工照片</td>
+                <td align="center" rowspan='4'>
+                    <input id="file" name="file" type="file" style='display: none' accept="image/jpeg" />
+                    <img id="img" width=200px height=200px style="cursor: pointer"
+                         th:src="@{/style/images/add1.png}"
+                         onclick="file.click()"/>
+                    <input type="hidden" name="serviceStaffPhoto" id="serviceStaffPhoto" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='easyui-linkbutton' iconCls="icon-man" onclick="openhighmeter(1)">拍照</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='easyui-linkbutton' iconCls="icon-redo" onclick="clickPic()">上传</button>
+    </div>
+    <div>
+        <span style="color: #880000">(温馨提示：人脸大小不得小于相框大小的1/2)</span>
+    </div>
+
+</div>
+
+<!-- 第二层弹窗：人脸采集（添加人员信息） -->
+<div id="dd2" class="easyui-dialog" title="人脸采集" style="width:420px;height:500px"
+     data-options="iconCls:'icon-save',resizable:true,modal:true">
+    <div class="modal-dialog" style="width: 400px;">
+        <div class="modal-content">
+            <div class="modal-body" style="width: 400px ;height: 400px;">
+                <!--<div class="cropper-modal">
+                    <img id="highImg" style="width: 400px ;height: 400px;"/>
+                </div>-->
+                <div style="position:relative">
+                    <img id="highImg" style="position:absolute;width: 400px ;height: 400px; left:0; top:0; z-index:1;" />
+                    <img th:src="@{/style/images/renliankuang.png}" style="position:absolute; width: 400px ;height: 400px;left:0; top:0; z-index:2;" />
+                </div>
+                <div style="clear: both"></div>
+            </div>
+
+
+            <div class="modal-footer">
+                <div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='easyui-linkbutton' iconCls="icon-man" onclick="photograph()">拍照</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='easyui-linkbutton' iconCls="icon-no" onclick="closePhoto()">停止</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 第二层弹窗：人脸采集（编辑人员信息） -->
+<div id="dd4" class="easyui-dialog" title="人脸采集(编辑)" style="width:420px;height:500px"
+     data-options="iconCls:'icon-save',resizable:true,modal:true">
+    <div class="modal-dialog" style="width: 400px;">
+        <div class="modal-content">
+            <div class="modal-body" style="width: 400px ;height: 400px;">
+                <!--<div class="cropper-modal">
+                    <img id="highImg" style="width: 400px ;height: 400px;"/>
+                </div>-->
+                <div style="position:relative">
+                    <img id="highImg1" style="position:absolute;width: 400px ;height: 400px; left:0; top:0; z-index:1;"  />
+                    <img th:src="@{/style/images/renliankuang.png}" style="position:absolute; width: 400px ;height: 400px;left:0; top:0; z-index:2;" />
+                </div>
+                <div style="clear: both"></div>
+            </div>
+            <div class="modal-footer">
+                <div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='easyui-linkbutton' iconCls="icon-man" onclick="photograph1()">拍照</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='easyui-linkbutton' iconCls="icon-no" onclick="closePhoto1()">停止</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 编辑人员:人员信息编辑  -->
+<div id="dd3" class="easyui-dialog" title="编辑人员信息" style="width:600px;height:450px"
+     data-options="iconCls:'icon-save',resizable:true,modal:true,buttons:[{
+            text:'更新',
+            handler:function(){
+                $('#serviceStaffEdit').submit();
+            }
+     },{
+            text:'取消',
+            handler:function(){
+                $('#dd3').dialog('close');
+            }
+     }] ">
+
+    <form id="serviceStaffEdit" method="post">
+        <div style="display: none">
+            <!--根据ID进行更新-->
+            <input name="id" id="id1"/>
+        </div>
+        <table>
+
+            <tr>
+                <td>员工部门</td>
+                <td>
+                    <select id="serviceStaffDept1" name="serviceStaffDept" style="width: 200px;" class="easyui-combobox" data-options="valueField:'id', textField:'text', panelHeight:'350px'">
+                    </select>
+                </td>
+                <td>姓名</td>
+                <td><input id="serviceStaffName1" name="serviceStaffName"  style="width: 200px;" class="easyui-textbox" data-options="required: true,validType:'length[1,10]' " /></td>
+            </tr>
+
+            <tr>
+                <td>员工编号</td>
+                <td><input id="serviceStaffNumber1" name="serviceStaffNumber" style="width: 200px;" class="easyui-textbox" data-options="validType:'length[1,20]'" /></td>
+                <td>员工工号</td>
+                <td><input id="serviceStaffIcNo1" style="width: 200px;" name="serviceStaffIcNo" class="easyui-textbox" data-options="required: true,validType:'length[1,20]'" /></td>
+            </tr>
+
+            <tr>
+                <td>是否外勤</td>
+                <td>
+                    <select id="isOutWork1" name="isOutWork" style="width: 200px;" class="easyui-combobox" data-options="valueField:'id', textField:'text',required:true, editable:false, panelHeight:'auto'" >
+                        <option  value="2">无</option>
+                        <option  value="0">内勤</option>
+                        <option  value="1">外勤</option>
+                    </select>
+                </td>
+                <td>手机号</td>
+                <td><input id="serviceStaffTel1" name="serviceStaffTel" style="width: 200px;" class="easyui-textbox" data-options="validType:'length[1,11]'" /></td>
+            </tr>
+
+            <tr>
+                <td>员工照片</td>
+
+                <td align="center" rowspan='4'>
+                    <input id="file1" name="file1" type="file" style='display: none' accept="image/jpeg" />
+                    <img id="img1" width=200px height=200px style="cursor: pointer"
+                         th:src="@{/style/images/add1.png}"
+                         onclick="file1.click()"/>
+                    <input type="hidden" name="serviceStaffPhoto" id="serviceStaffPhoto1" />
+                </td>
+            </tr>
+
+        </table>
+    </form>
+
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='easyui-linkbutton' iconCls="icon-man" onclick="openhighmeter1(1)">拍照</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='easyui-linkbutton' iconCls="icon-redo" onclick="clickPic1()">上传</button>
+    </div>
+
+    <div>
+        <span style="color: #880000">(温馨提示：人脸大小不得小于相框大小的1/2)</span>
+    </div>
+</div>
+
+<!--同步状态查看-->
+<div id="dd5" class="easyui-dialog" title="查看同步状态" style="width:400px;height:250px"
+     data-options="iconCls:'icon-save',resizable:true,modal:true,buttons:[{
+            text:'关闭',
+            handler:function(){
+                $('#dd5').dialog('close');
+            }
+     }] ">
+    <table id="synchroEnitId" data-options="fit:true,border:false">
+    </table>
+</div>
+
+
+<script type="text/javascript">
+    $('input[id=lefile]').change(function() {
+        $('#photoCover').val($(this).val());
+    });
+
+</script>
+
+</body>
+</html>

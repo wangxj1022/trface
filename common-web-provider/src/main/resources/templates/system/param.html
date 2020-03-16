@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+    <head>
+        <div th:replace="inc :: htmlhead"></div>
+        <script type="text/javascript" th:src="@{/jslib/js/system/param.js}"></script>
+    </head>
+<body>
+
+<div id="toolbar" style="display: none;">
+    <form id="searchForm">
+        参数名:&nbsp;<input id="paramName" name= "paramName" class="easyui-textbox" style="width:240px" />
+        <a onclick="searchFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">查询</a>
+        <a onclick="chearFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">清空</a>
+        <a onclick="sendMail();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-redo'">发送邮件</a>
+        <a onclick="sendMessage();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-redo'">发送短信</a>
+    </form>
+    <!--<a onclick="delFun(0);" shiro:hasPermission="/log/delete" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'">删除</a>
+    <a onclick="delFun(1);" shiro:hasPermission="/log/batchDelete" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'">批量删除</a>-->
+</div>
+<table id="dataGrid" data-options="fit:true,border:false"></table>
+</body>
+</html>

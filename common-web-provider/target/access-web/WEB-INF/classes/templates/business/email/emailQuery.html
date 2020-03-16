@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <div th:replace="inc :: htmlhead"></div>
+    <script type="text/javascript" th:src="@{/jslib/js/business/email.js}"></script>
+</head>
+<body>
+
+<div id="toolbar" style="display: none;">
+    <form id="searchForm">
+        邮箱地址:<input class="easyui-textbox" name="emailAddress" style="width:110px;"/>&nbsp;
+        用户名:<input class="easyui-textbox" name="emailName" style="width:110px;"/>&nbsp;
+        <a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">新增</a>
+        <a onclick="searchFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">查询</a>
+        <a onclick="chearFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">清空</a>
+        <!--<a onclick="sendFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">发送测试</a>-->
+    </form>
+</div>
+
+<table id="dataGrid" data-options="fit:true,border:false"></table>
+
+</body>
+</html>

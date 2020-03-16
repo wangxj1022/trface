@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <div th:replace="inc :: htmlhead"></div>
+    <script type="text/javascript" th:src="@{/jslib/js/system/user.js}"></script>
+</head>
+<body>
+<table id="dataGrid" data-options="fit:true,border:false"></table>
+<div id="toolbar" style="display: none;">
+    <form id="searchForm">
+        操作员:&nbsp;<input class="easyui-textbox" name="name" style="width:120px;" />
+        创建时间:&nbsp;<input id="newBeginTime" name= "newBeginTime" class="easyui-datetimebox" style="width:150px" data-options="editable:false,"/>
+        - <input name="newEndTime" id="newEndTime" class="easyui-datetimebox" style="width:150px" data-options="editable:false"/>
+        <a onclick="searchFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">查询</a>
+        <a onclick="chearFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">清空</a>
+    </form>
+    <a onclick="addFun();"  shiro:hasPermission="/user/add" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
+    <a onclick="editFun();" shiro:hasPermission="/user/edit" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'">编辑</a>
+    <a onclick="delFun();"  shiro:hasPermission="/user/delete"  href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'">删除</a>
+</div>
+
+<div id="userAddDiv" class="easyui-dialog" closed="true" style="width:500px;height:270px;padding:10px 20px" buttons="#userAddDiv-buttons">
+    <form id="userAddForm" method="post">
+        <table>
+            <tr>
+                <td style="width: 50px;">登录名</td>
+                <td><input class="easyui-textbox" id="username" name="username" style="width: 160px;"  data-options="required:true,validType:'length[4,16]'"/></td>
+                <td style="width: 50px;">姓名</td>
+                <td><input class="easyui-textbox" id="name" name="name" style="width: 160px;"  data-options="required:true,validType:'length[1,20]'"/></td>
+            </tr>
+            <tr>
+                <td style="width: 50px;">密码</td>
+                <td><input class="easyui-textbox" id="password" style="width: 160px;" type="password" name="password"  data-options="required:true,validType:'length[6,16]'"/></td>
+
+                <td style="width: 50px;">确认密码</td>
+                <td><input class="easyui-textbox" id="rePassword" style="width: 160px;" type="password" name="rePassword"  data-options="required:true,validType:'length[6,16]'"/></td>
+                <!--<td style="width: 50px;">编号</td>
+                <td><input class="easyui-textbox" id="code" style="width: 160px;" name="code" data-options="required:true,validType:'length[1,20]'"/></td>-->
+            </tr>
+            <!--<tr>
+                <td style="width: 50px;">性别</td>
+                <td><select style="width: 160px;" id="sex" class="easyui-combobox" name="sex" data-options="required:true, editable: false,">
+                    <option value=""></option>
+                    <option value="0">男</option>
+                    <option value="1">女</option>
+                </select></td>
+                <td style="width: 50px;">年龄</td>
+                <td> <input class="easyui-textbox" id="age" name="age" style="width: 160px;"  data-options="required:true,validType:'length[1,3]'"/></td>
+            </tr>-->
+            <tr>
+                <td style="width: 50px;">所属部门</td>
+                <td>
+                    <select  id="organizationId" name="organizationId" style="width:160px;"/>
+                </td>
+                <td style="width: 50px;">角色</td>
+                <td>
+                    <select  id="roleId" name="roleId" style="width:160px;"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 50px;">手机号</td>
+                <td>
+                    <input class="easyui-textbox" style="width: 160px;" id='phone' name="phone" data-options="validType:'length[1,13]'"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="userAddDiv-buttons">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveAddUser()">保存</a>
+</div>
+
+
+
+<div id="userEditDiv" class="easyui-dialog" closed="true" style="width:500px;height:300px;padding:10px 20px" buttons="#userEditDiv-buttons">
+    <span style="color: red">如果不改密码,密码不用填写！</span>
+    <form id="userEditForm" method="post">
+        <table>
+            <tr>
+                <td style="width: 50px;">登录名</td>
+                <td> <input name="id" id="id" type="hidden"/>
+                    <input class="easyui-textbox" id="username_edit" name="username" style="width: 160px;"  data-options="required:true,validType:'length[4,16]'"/></td>
+                <td style="width: 50px;">密码</td>
+                <td><input class="easyui-textbox" id="password_edit" style="width: 160px;" type="password"  name="password"  data-options="validType:'length[6,16]'"/></td>
+            </tr>
+            <tr>
+                <td style="width: 50px;">姓名</td>
+                <td><input class="easyui-textbox" id="name_edit" name="name" style="width: 160px;"  data-options="required:true,validType:'length[1,20]'"/></td>
+                <!--<td style="width: 50px;">编号</td>
+                <td><input class="easyui-textbox" id="code_edit" style="width: 160px;" name="code"   data-options="required:true,validType:'length[1,20]'" disabled="disabled"/></td>-->
+            </tr>
+            <!--<tr>
+                <td style="width: 50px;">性别</td>
+                <td><select style="width: 160px;" id="sex_edit" class="easyui-combobox" name="sex" data-options="required:true, editable: false,">
+                    <option value=""></option>
+                    <option value="0">男</option>
+                    <option value="1">女</option>
+                </select></td>
+                <td style="width: 50px;">年龄</td>
+                <td> <input class="easyui-textbox" id="age_edit" name="age" style="width: 160px;" data-options="required:true,validType:'length[1,3]'"/></td>
+            </tr>-->
+            <tr>
+                <td style="width: 50px;">所属部门</td>
+                <td>
+                    <select  id="organizationId_edit" name="organizationId" style="width:160px;"/>
+                </td>
+                <td style="width: 50px;">角色</td>
+                <td>
+                    <select  id="roleId_edit" name="roleId" style="width:160px;"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 50px;">手机号</td>
+                <td>
+                    <input class="easyui-textbox" style="width: 160px;" id='phone_edit' name="phone" data-options="validType:'length[1,13]'"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="userEditDiv-buttons">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveEditUser()">保存</a>
+</div>
+
+<script>
+    function Today1()
+    {
+        var outStr="";
+        var currentDate = new Date();
+
+        var month = currentDate.getMonth()+1;
+        var day = currentDate.getDate();
+
+        outStr = currentDate.getFullYear();
+        if ( month < 10 )
+        {
+            outStr = outStr +"-0"+month;
+        }else
+        {
+            outStr = outStr +"-"+month;
+        }
+        if ( day < 10 )
+        {
+            outStr = outStr +"-0"+day;
+        }else
+        {
+            outStr = outStr +"-"+day;
+        }
+        return outStr;
+
+    }
+    $("#newBeginTime").val(Today1()+" 00:00:00");
+    $("#newEndTime").val(Today1()+" 23:59:59");
+</script>
+</body>
+</html>

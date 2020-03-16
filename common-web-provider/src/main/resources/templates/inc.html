@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:fragment="htmlhead" th:title="出入管理平台">
+    <!--<th:block th:fragment="htmlhead"></th:block>-->
+    <!-- 编码 -->
+    <meta charset="UTF-8"> <!-- for HTML5 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>出入管理平台</title>
+    <!-- EasyUI css-->
+    <link rel="stylesheet" type="text/css" th:href="@{/jslib/jquery-easyui-1.6.2/themes/bootstrap/easyui.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/jslib/jquery-easyui-1.6.2/themes/icon.css}">
+    <!-- EasyUI js-->
+    <!--<script type="text/javascript" th:src="@{/jslib/jquery-easyui-1.6.2/jquery.min.js}" charset="utf-8"></script>-->
+    <script type="text/javascript" th:src="@{/jslib/jquery-1.11.3.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:inline="javascript" th:src="@{/jslib/jquery-easyui-1.6.2/jquery.easyui.min.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/jslib/jquery-easyui-1.6.2/locale/easyui-lang-zh_CN.js}" charset="utf-8"></script>
+
+    <script type="text/javascript" th:inline="javascript" th:src="@{/jslib/kindeditor/kindeditor-all.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:inline="javascript" th:src="@{/jslib/kindeditor/lang/zh-CN.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/jslib/extJs.js}"></script>
+    <script type="text/javascript" th:src="@{/jslib/md5.js}" charset="utf-8"></script>
+    <script  type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+        var ctx = /*[[${#httpServletRequest.getScheme() + "://" + #httpServletRequest.getServerName() + ":" + #httpServletRequest.getServerPort() + #httpServletRequest.getContextPath()}]]*/;
+        /*]]>*/
+    </script>
+</html>

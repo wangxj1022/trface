@@ -1,0 +1,44 @@
+<!-- 改变easyUI树的一些css样式-->
+li {
+    padding: 2px 0px;
+}
+span .tree-icon  {
+    display: none;
+}
+/* 树节点的图标 */
+.tree-file {
+    display: none;
+}
+/* 选中的颜色 */
+.tree-node-selected{
+    background-color: #fdfdfd;
+    color: black;
+}
+.accordion .accordion-header{
+    background: #f9fafc;
+    -webkit-box-shadow:inset 0px -1px 2px -1px #1e282c;
+    box-shadow: inset 0px -1px 2px -1px #1e282c;
+    -moz-box-shadow: inset 0px -1px 2px -1px #1e282c;
+}
+.accordion{
+    background: #f9fafc;
+}
+.panel-body .accordion-body{
+    background-color: #fdfdfd;
+}
+.accordion .accordion-header :hover{
+    color: black;
+}
+.tree-node:hover {
+    background-color: #fdfdfd;
+}
+.accordion .accordion-header-selected {
+    background: linear-gradient(to bottom,#FFFFFF 0,#F2F2F2 100%);
+    background-repeat: repeat;
+}
+.accordion .accordion-header-selected .panel-title{
+    color: #333333;
+}
+.panel-title{
+    margin-left: 5px;
+}

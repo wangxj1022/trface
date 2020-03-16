@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="common-web-provider:war">
+    <output-path>$PROJECT_DIR$/common-web-provider/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>common-web-provider</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="access-web.war">
+      <element id="artifact" artifact-name="common-web-provider:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<body>
+<div style="padding: 15px;">
+    <form id="staffDetail" method="post">
+        <table>
+            <tr>
+                <td>员工工号</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${staff.staffId}" /></td>
+                <td>员工姓名</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${staff.staffName}" /></td>
+            </tr>
+            <!--<tr>-->
+                <!--<td>电话</td>-->
+                <!--<td><input class="easyui-textbox" data-options="editable:false," th:value="${staffAccessInfo.staffPhone}" /></td>-->
+                <!--<td>性别</td>-->
+                <!--<td th:switch="${staffAccessInfo.staffGender}">-->
+                    <!--<input th:case="'1'" value="男" class="easyui-textbox" data-options="editable:false," />-->
+                    <!--<input th:case="'2'" value="女" class="easyui-textbox" data-options="editable:false," />-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>出生日期</td>-->
+                <!--<td><input class="easyui-textbox" data-options="editable:false," th:value="${staffAccessInfo.staffBirthday}" /></td>-->
+                <!--<td>住址</td>-->
+                <!--<td><input class="easyui-textbox" data-options="editable:false," th:value="${staffAccessInfo.staffAddress}" /></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>进入闸机编号</td>-->
+                <!--<td><input class="easyui-textbox" data-options="editable:false," th:value="${staffAccessInfo.inDeviceId}" /></td>-->
+                <!--<td>进入时间</td>-->
+                <!--<td><input class="easyui-textbox" data-options="editable:false," th:value="${staffAccessInfo.inTime}" /></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>进入对比分数</td>-->
+                <!--<td><input class="easyui-textbox" data-options="editable:false," th:value="${staffAccessInfo.inCompareScore}" /></td>-->
+                <!--<td>进入对比耗时(ms)</td>-->
+                <!--<td><input class="easyui-textbox" data-options="editable:false," th:value="${staffAccessInfo.inCompareDelay}" /></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>离开闸机编号</td>-->
+                <!--<td><input class="easyui-textbox" data-options="editable:false," th:value="${staffAccessInfo.outDeviceId}" /></td>-->
+                <!--<td>离开时间</td>-->
+                <!--<td><input class="easyui-textbox" data-options="editable:false," th:value="${staffAccessInfo.outTime}" /></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>离开对比分数</td>-->
+                <!--<td><input class="easyui-textbox" data-options="editable:false," th:value="${staffAccessInfo.outCompareScore}" /></td>-->
+                <!--<td>离开对比耗时(ms)</td>-->
+                <!--<td><input class="easyui-textbox" data-options="editable:false," th:value="${staffAccessInfo.outCompareDelay}" /></td>-->
+            <!--</tr>-->
+            <tr>
+                <td>进入抓拍</td>
+                <td>
+                    <img width=100px height=100px th:src="@{'data:image/png;base64,'+${staff.curPhoto}}" />
+                </td>
+                <!--<td>对比模板</td>-->
+                <!--<td>-->
+                    <!--<img width=100px height=100px th:src="@{'data:image/png;base64,'+${staffAccessInfo.inCompareImage}}" />-->
+                <!--</td>-->
+            </tr>
+            <!--<tr>-->
+                <!--<td>离开抓拍</td>-->
+                <!--<td>-->
+                    <!--<img width=100px height=100px th:src="@{'data:image/png;base64,'+${staffAccessInfo.outCaptureImage}}" />-->
+                <!--</td>-->
+                <!--<td>对比模板</td>-->
+                <!--<td>-->
+                    <!--<img width=100px height=100px th:src="@{'data:image/png;base64,'+${staffAccessInfo.outCompareImage}}" />-->
+                <!--</td>-->
+            <!--</tr>-->
+        </table>
+    </form>
+</div>
+</div>
+</body>
+</html>

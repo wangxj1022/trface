@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<body>
+<div style="padding: 15px;">
+	<form id="staffAccessInfoDetail" method="post">
+		<table>
+			<tr>
+				<td>员工工号</td>
+				<td><input class="easyui-textbox" data-options="editable:false," th:value="${staffAccessInfo.staffCode}" /></td>
+				<td>员工姓名</td>
+				<td><input class="easyui-textbox" data-options="editable:false," th:value="${staffAccessInfo.staffName}" /></td>
+			</tr>
+			<tr>
+				<td>通过时间</td>
+				<td><input class="easyui-textbox" data-options="editable:false," th:value="${#dates.format(staffAccessInfo.inTime,'yyyy-MM-dd hh:mm:ss')}" />
+				</td>
+
+				<td>状态</td>
+				<!--<td><input class="easyui-textbox" data-options="editable:false," th:value="${staff.isOutWork}" /></td>-->
+				<td>
+					<input class="easyui-textbox" data-options="editable:false," th:if="${staffAccessInfo.accessStatus} == 0" value="进入"/>
+					<input class="easyui-textbox" data-options="editable:false," th:if="${staffAccessInfo.accessStatus} == 1" value="离开"/>
+				</td>
+			</tr>
+			<tr>
+				<td>认证方式</td>
+				<td>
+					<!--<input class="easyui-textbox" data-options="editable:false," th:if="${staffAccessInfo.inPersonType} == 1" value="身份证"/>
+					<input class="easyui-textbox" data-options="editable:false," th:if="${staffAccessInfo.inPersonType} == 2" value="员工卡"/>-->
+					<input class="easyui-textbox" data-options="editable:false," value="人脸"/>
+				</td>
+				<td>员工体温</td>
+				<td>
+					<input class="easyui-textbox" data-options="editable:false," th:value="${staffAccessInfo.temperature}" />
+				</td>
+			</tr>
+
+			<tr>
+                <td th:if="${staffAccessInfo.inCaptureImage}">人脸信息</td>
+                <td th:if="${staffAccessInfo.inCaptureImage}">
+                    <img width=150px height=150px th:src="@{'data:image/png;base64,'+${staffAccessInfo.inCaptureImage}}" />
+                </td>
+
+				<td th:if="${staffAccessInfo.outCaptureImage}">抓拍信息</td>
+				<td th:if="${staffAccessInfo.outCaptureImage}">
+					<img width=150px height=150px th:src="@{'data:image/png;base64,'+${staffAccessInfo.outCaptureImage}}" />
+				</td>
+			</tr>
+
+		</table>
+	</form>
+</div>
+</div>
+</body>
+</html>

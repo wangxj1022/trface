@@ -1,0 +1,11 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.trendcote.web.config.EmailConfig",
+      "name": "spring.mail",
+      "type": "com.trendcote.web.config.EmailConfig"
+    }
+  ],
+  "properties": []
+}

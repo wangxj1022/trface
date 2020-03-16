@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <div th:replace="inc :: htmlhead"></div>
+    <script type="text/javascript" th:src="@{/jslib/js/business/fangke.js}"></script>
+</head>
+<body>
+<div id="toolbar" style="display: none;">
+    <form id="searchForm">
+        姓名:&nbsp;<input class="easyui-textbox" id="xm" name="xm" style="width:110px;"/>&nbsp;
+        交通方式:&nbsp;<select name="triptype" id="triptype" style="width: 110px;"  class="easyui-combobox">
+            <option></option>
+            <option value="飞机">飞机</option>
+            <option value="火车">火车</option>
+            <option value="轮船">轮船</option>
+            <option value="公交">公交</option>
+            <option value="私家车">私家车</option>
+        </select>&nbsp;
+        车次:&nbsp;<input class="easyui-textbox" id="tripno" name="tripno" style="width:110px;"/>
+        登记时间:&nbsp;<input id="newBeginTime" name= "newBeginTime" class="easyui-datetimebox" style="width:140px;" data-options="onShowPanel:function(){
+        $(this).datetimebox('spinner').timespinner('setValue','00:00:00');
+    }">
+        - <input name="newEndTime" id="newEndTime" class="easyui-datetimebox" style="width:140px" data-options="onShowPanel:function(){
+        $(this).datetimebox('spinner').timespinner('setValue','00:00:00');
+    }">
+        <a onclick="searchFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">查询</a>
+        <a onclick="chearFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">清空</a>
+    </form>
+</div>
+<table id="dataGrid" data-options="fit:true,border:false"></table>
+
+<script>
+    function Today1()
+    {
+        var outStr="";
+        var currentDate = new Date();
+
+        var month = currentDate.getMonth()+1;
+        var day = currentDate.getDate();
+
+        outStr = currentDate.getFullYear();
+        if ( month < 10 )
+        {
+            outStr = outStr +"-0"+month;
+        }else
+        {
+            outStr = outStr +"-"+month;
+        }
+        if ( day < 10 )
+        {
+            outStr = outStr +"-0"+day;
+        }else
+        {
+            outStr = outStr +"-"+day;
+        }
+        return outStr;
+
+    }
+    $("#newBeginTime").val(Today1()+" 00:00:00");
+    $("#newEndTime").val(Today1()+" 23:59:59");
+</script>
+</body>
+</html>

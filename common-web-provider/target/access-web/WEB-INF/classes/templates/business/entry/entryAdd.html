@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+      xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<body>
+<div style="padding: 15px;">
+    <form id="entryAdd" method="post">
+        <table>
+            <tr>
+                <td>出入口编号</td>
+                <td><input name="entryId" class="easyui-textbox" data-options="prompt:'例如:E001',required:true,validType:'length[1,4]' "/></td>
+                <td>出入口名称</td>
+                <td><input name="entryName" class="easyui-textbox" data-options="required:true,validType:'length[1,10]' " /></td>
+            </tr>
+
+            <tr>
+                <td>出入口类别</td>
+                <td>
+                    <select name="entryCategory" style="width: 165px;" class="easyui-combobox" data-options="required:true, editable:false, panelHeight:'auto'">
+                        <option value="0">员工通道</option>
+                        <option value="1">访客通道</option>
+                        <option value="2">员工和访客通道</option>
+                    </select>
+                </td>
+                <td>进出类型</td>
+                <td>
+                    <select name="entryType" style="width: 165px;" class="easyui-combobox" data-options="required:true, editable:false, panelHeight:'auto'">
+                        <option value="0">人员</option>
+                        <option value="1">车辆</option>
+                        <option value="2">人员和车辆</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>岗亭电话</td>
+                <td><input name="entryPhone" type="text" class="easyui-textbox" /></td>
+            </tr>
+            <tr>
+                <td>备注</td>
+                <td><input name="remark" type="text" class="easyui-textbox" /></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+</div>
+</body>
+</html>

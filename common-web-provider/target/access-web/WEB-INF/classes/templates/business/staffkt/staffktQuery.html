@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <div th:replace="inc :: htmlhead"></div>
+    <script type="text/javascript" th:src="@{/jslib/js/business/staffkt.js}"></script>
+</head>
+<body>
+<div id="toolbar" style="display: none;">
+    <form id="searchForm">
+        员工编号:<input class="easyui-textbox" name="staffktNumber" style="width:110px;"/>&nbsp;
+        姓名:<input class="easyui-textbox" name="staffktName" style="width:110px;"/>&nbsp;
+        <a onclick="searchFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">查询</a>
+        <a onclick="chearFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">清空</a>
+        <a onclick="delFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'">删除</a>
+        <a onclick="addFromDbFun1();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">现有库检索(自动类)</a>
+        <a onclick="addFromDbFun2();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">现有库检索(手动类)</a>
+        <a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">单独录入</a>
+    </form>
+</div>
+<table id="dataGrid" data-options="fit:true,border:false"></table>
+
+<!-- 现有库检索 -->
+<div id="currentDb1" class="easyui-dialog" title="现有库检索(自动类)" style="width:800px;height:500px"
+     data-options="iconCls:'icon-save',resizable:true,modal:true,buttons:[{
+            text:'添加',
+            handler:function(){
+                var node = dataGrid1.datagrid('getSelected');
+                if(null==node || null==node.id){
+                    parent.$.messager.alert('提示', '请选择数据', 'warning');
+                }else{
+                    var type = 'staff_info';
+                    var id = node.id;
+
+                    $.post(ctx+'/staffkt/staffAdd',{type:type,id:id},function(result){
+                        if (result.success){
+                            $.messager.alert('成功',result.msg, 'info');
+                            $('#dataGrid').datagrid('reload');
+                            $('#dataGrid').datagrid('clearSelections');
+                            $('#searchDataGrid1').datagrid('clearSelections');
+                            $('#searchDataGrid1').datagrid('reload');
+                        } else {
+                            $.messager.alert('失败',result.msg, 'error');
+                        }
+                    },'json');
+
+                }
+            }
+     },{
+            text:'取消',
+            handler:function(){
+                $('#currentDb1').dialog('close');
+            }
+     }] ">
+
+    <form id="searchForm1">
+
+        <tr>
+            <td>员工编号</td>
+            <td>
+                <input id="staffCode" name="staffCode"  style="width: 150px;" class="easyui-textbox" data-options="validType:'length[1,20]' " />
+            </td>
+        </tr>
+
+        <tr>
+            <td>员工姓名</td>
+            <td>
+                <input id="staffName" name="staffName"  style="width: 150px;" class="easyui-textbox" data-options="validType:'length[1,10]' " />
+            </td>
+        </tr>
+
+        <a onclick="searchCurrDbFun1();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">查询</a>
+        <a onclick="chearCurrDbFun1();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">清空</a>
+
+    </form>
+
+    <table id="searchDataGrid1" data-options="border:false"></table>
+
+</div>
+
+<div id="currentDb2" class="easyui-dialog" title="现有库检索(手动类)" style="width:800px;height:500px"
+     data-options="iconCls:'icon-save',resizable:true,modal:true,buttons:[{
+            text:'添加',
+            handler:function(){
+               var node = dataGrid2.datagrid('getSelected');
+                if(null==node || null==node.id){
+                    parent.$.messager.alert('提示', '请选择数据', 'warning');
+                }else{
+                    var type = 'service_staff_info';
+                    var id = node.id;
+                    $.post(ctx+'/staffkt/staffAdd',{type:type,id:id},function(result){
+                        if (result.success){
+                            $.messager.alert('成功',result.msg, 'info');
+                            $('#dataGrid').datagrid('reload');
+                            $('#dataGrid').datagrid('clearSelections');
+                            $('#searchDataGrid2').datagrid('clearSelections');
+                            $('#searchDataGrid2').datagrid('reload');
+                        } else {
+                            $.messager.alert('失败',result.msg, 'error');
+                        }
+                    },'json');
+
+                }
+            }
+     },{
+            text:'取消',
+            handler:function(){
+                $('#currentDb2').dialog('close');
+            }
+     }] ">
+
+    <form id="searchForm2">
+
+        <tr>
+            <td>员工编号</td>
+            <td>
+                <input id="serviceStaffNumber" name="serviceStaffNumber"  style="width: 150px;" class="easyui-textbox" data-options="validType:'length[1,10]' " />
+            </td>
+        </tr>
+
+        <tr>
+            <td>员工姓名</td>
+            <td>
+                <input id="serviceStaffName" name="serviceStaffName"  style="width: 150px;" class="easyui-textbox" data-options="validType:'length[1,10]' " />
+            </td>
+        </tr>
+
+        <a onclick="searchCurrDbFun2();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">查询</a>
+        <a onclick="chearCurrDbFun2();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">清空</a>
+
+    </form>
+
+    <table id="searchDataGrid2" data-options="border:false"></table>
+
+</div>
+
+
+</body>
+</html>

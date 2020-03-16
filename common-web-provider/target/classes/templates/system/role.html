@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <div th:replace="inc :: htmlhead"></div>
+    <script type="text/javascript" th:src="@{/jslib/js/system/role.js}"></script>
+</head>
+<body>
+<table id="dataGrid" data-options="fit:true,border:false"></table>
+<div id="toolbar" style="display: none;">
+    <a onclick="addFun();" shiro:hasPermission="/role/add" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
+    <a onclick="editFun();"  shiro:hasPermission="/role/edit" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'">编辑</a>
+    <a onclick="delFun();" shiro:hasPermission="/role/delete" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'">删除</a>
+    <a onclick="grantFun();" shiro:hasPermission="/role/grant" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-ok'">授权</a>
+</div>
+
+<div id="roleAddDiv" class="easyui-dialog" closed="true" style="width:350px;height:270px;padding:10px 20px" buttons="#roleAddDiv-buttons">
+    <form id="roleAddForm" method="post">
+        <div>
+            <input class="easyui-textbox" id="name" name="name" style="width:250px;"  data-options="required:true,label:'角色名',validType:'length[1,20]'"/>
+        </div>
+        <!--<div style="padding-top:10px">
+            <input class="easyui-textbox" id="code" style="width: 250px;" name="code"  data-options="required:true,label:'角色编号',validType:'length[1,20]'"/>
+        </div>-->
+        <div style="padding-top:10px">
+        <input class="easyui-textbox" name="description" data-options="multiline:true,label:'描述',validType:'length[1,200]'" style="height:60px;width: 250px">
+    </div>
+    </form>
+</div>
+<div id="roleAddDiv-buttons">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveAddRole()">保存</a>
+</div>
+
+<div id="roleEditDiv" class="easyui-dialog" closed="true" style="width:350px;height:270px;padding:10px 20px" buttons="#roleEditDiv-buttons">
+    <form id="roleEditForm" method="post">
+        <div>
+            <input name="id" id="id" type="hidden"/>
+            <input class="easyui-textbox" id="name_edit" name="name" style="width:250px;"  data-options="required:true,label:'角色名',validType:'length[1,20]'"/>
+        </div>
+        <!--<div style="padding-top:10px">
+            <input class="easyui-textbox" id="code_edit" style="width: 250px;" name="code"  data-options="required:true,label:'角色编号',validType:'length[1,20]'"/>
+        </div>-->
+        <div style="padding-top:10px">
+            <input class="easyui-textbox" id="description_edit" name="description" data-options="multiline:true,label:'描述',validType:'length[1,200]'" style="height:60px;width: 250px">
+        </div>
+    </form>
+</div>
+<div id="roleEditDiv-buttons">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveEditRole()">保存</a>
+</div>
+<div id="roleGrantDiv" class="easyui-dialog" closed="true" style="width:300px;height:500px;padding:10px 20px;overflow-y:scroll" buttons="#roleGrantDiv-buttons">
+    <form id="roleGrantForm" method="post">
+        <div>
+            <ul id="tree">
+            </ul>
+            <input id="resourceIds" name="resourceIds" type="hidden" />
+            <input name="id" type="hidden" id="id_grant" readonly="readonly">
+        </div>
+    </form>
+</div>
+<div id="roleGrantDiv-buttons">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveGrantRole()">保存</a>
+</div>
+</body>
+</html>

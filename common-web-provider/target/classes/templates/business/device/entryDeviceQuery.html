@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <div th:replace="inc :: htmlhead"></div>
+    <script type="text/javascript" th:src="@{/jslib/js/business/device.js}"></script>
+</head>
+<body>
+
+<div id="toolbar" style="display: none;">
+    <form id="searchForm">
+        设备编号:<input class="easyui-textbox" name="deviceId" style="width:140px;"/>&nbsp;
+        设备IP:<input class="easyui-textbox" name="deviceIp" style="width:180px;"/>&nbsp;
+        <a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">新增</a>
+        <a onclick="searchFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">查询</a>
+        <a onclick="chearFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">清空</a>
+    </form>
+</div>
+
+<table id="dataGrid" data-options="fit:true,border:false"></table>
+
+</body>
+</html>

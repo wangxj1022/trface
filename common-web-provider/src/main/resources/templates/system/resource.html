@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+	<div th:replace="inc :: htmlhead"></div>
+	<script type="text/javascript" th:src="@{/jslib/js/system/resource.js}"></script>
+</head>
+<body>
+	<div id="toolbar" style="display: none;">
+		<a onclick="addFun();" shiro:hasPermission="/resource/add" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
+		<a onclick="editFun();" shiro:hasPermission="/resource/edit" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'">编辑</a>
+		<a onclick="delFun();" shiro:hasPermission="/resource/delete" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'">删除</a>
+	</div>
+	<table id="treeGrid" class="easyui-treegrid"></table>
+</body>
+</html>

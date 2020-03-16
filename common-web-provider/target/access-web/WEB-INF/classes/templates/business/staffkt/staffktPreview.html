@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<body>
+<div style="padding: 15px;">
+    <form id="staffktDetail" method="post">
+        <table>
+
+            <input type="hidden" name="id" id="id"  th:value="${staffktInfo.id}"/>
+            <tr>
+                <td>员工编号</td>
+                <td><input id="staffktNumber" name="staffktNumber" class="easyui-textbox" data-options="validType:'length[1,20]'" th:value="${staffktInfo.staffktNumber}" /></td>
+                <td>姓名</td>
+                <td><input id="staffktName" name="staffktName" class="easyui-textbox" data-options="required:true,validType:'length[1,4]'" th:value="${staffktInfo.staffktName}" /></td>
+            </tr>
+
+
+            <tr>
+                <td>部门</td>
+                <td><input id="staffktDept" name="staffktDept" class="easyui-textbox" data-options="required:true,validType:'length[1,20]'" th:value="${staffktInfo.staffktDept}" /></td>
+                <td>是否外勤</td>
+                <!--<td><input class="easyui-textbox" data-options="editable:false," th:value="${staff.isOutWork}" /></td>-->
+                <td>
+                    <select id="isOutWork" name="isOutWork" style="width: 165px;" class="easyui-combobox" data-options="required:true, editable:false, panelHeight:'auto'" th:field="${staffktInfo.isOutWork}">
+                        <option th:selected="${staffktInfo.isOutWork == '2' }" value="">无</option>
+                        <option th:selected="${staffktInfo.isOutWork == '0' }" value="0">内勤</option>
+                        <option th:selected="${staffktInfo.isOutWork == '1' }" value="1">外勤</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>一卡通芯片号</td>
+                <td><input id="staffktIcNo" name="staffktIcNo" class="easyui-textbox" data-options="validType:'length[1,20]'" th:value="${staffktInfo.staffktIcNo}" /></td>
+            </tr>
+
+            <tr>
+                <td>员工照片</td>
+                <td align="center" rowspan='4'>
+                    <input id="file" name="file" type="file" style='display: none' accept="image/jpeg" />
+                    <img id="img" width=110px height=110px style="cursor: pointer"
+                         th:src="@{'data:image/jpeg;base64,'+${staffktInfo.staffktPhoto}}"
+                         onclick="file.click()" />
+                    <input type="hidden" name="staffktPhoto" id="staffktPhoto" />
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<body>
+<div style="padding: 15px;">
+    <form id="visitorAccessInfoDetail" method="post">
+        <table>
+            <tr>
+                <td>公司名称</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAccessInfo.personCompany}" /></td>
+                <td>访客姓名</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAccessInfo.personName}" /></td>
+                <td>性别</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAccessInfo.personGender}" /></td>
+            </tr>
+            <tr>
+                <td>职务</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAccessInfo.personDuty}" /></td>
+                <td>身份证号</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAccessInfo.personCode}" /></td>
+                <td>手机号</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAccessInfo.personPhone}" /></td>
+            </tr>
+            <tr>
+                <td>进入时间</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${#dates.format(visitorAccessInfo.inTime,'yyyy-MM-dd hh:mm:ss')}" /></td>
+                <td>离开时间</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${#dates.format(visitorAccessInfo.outTime,'yyyy-MM-dd hh:mm:ss')}" /></td>
+            </tr>
+            <tr>
+                <td>被访者</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAccessInfo.staffName}" /></td>
+                <td>部门</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAccessInfo.staffDept}" /></td>
+                <td>手机号</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAccessInfo.staffPhone}" /></td>
+            </tr>
+            <tr>
+                <td>事由</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitorAccessInfo.accessReason}" /></td>
+                <td>状态</td> <td><select name="accessStatus" style="width: 165px;" class="easyui-combobox" data-options="required:true, editable:false, panelHeight:'auto'" th:value="${visitorAccessInfo.accessStatus}">
+                    <option th:selected="${visitorAccessInfo.accessStatus == 1 }" value="1">进入</option>
+                    <option th:selected="${visitorAccessInfo.accessStatus == 0 }" value="0">预约</option>
+                    <option th:selected="${visitorAccessInfo.accessStatus == 2 }" value="2">离开</option>
+                    <option th:selected="${visitorAccessInfo.accessStatus == 3 }" value="3">其他</option>
+                                    </select>
+                              </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</div>
+</body>
+</html>

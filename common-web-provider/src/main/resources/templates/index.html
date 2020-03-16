@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" style="height: 100%; margin:0;">
+<head>
+	<div th:replace="inc :: htmlhead"></div>
+	<link th:href="@{/style/images/logo1.png}" rel="shortcut icon"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/style/css/index.css}">
+	<script type="text/javascript" th:src="@{/jslib/js/index.js}"></script>
+	<script type="text/javascript" th:src="@{/jslib/js/echart/echarts.min.js}"></script>
+</head>
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" style="height:60px;background:#B3DFDA;padding:10px">
+	<div style="float:left;">
+		<h2>疫情防控-出入门禁管理平台</h2>
+	</div>
+	<span style="float: right; padding-right: 10px; line-height: 50px;">
+		<div style=" float:left;"> 欢迎您,<shiro:principal property="name"/></div>
+		<a href="javascript:void(0);" style="color:#000000; float:left;width: 74px;text-align: center;" onclick="updatePassword();">修改密码</a>
+		<a href="javascript:void(0);" style="color:#000000; float:left;" onclick="logout();">退出登录</a>
+	</span>
+</div>
+<div data-options="region:'west',split:true,title:'出入管理平台'" style="width:150px;">
+	<div id="layout_west_accordion" class="easyui-accordion" data-options="fit:true,border:false,nimate:true,lines:true"></div>
+</div>
+<div data-options="region:'south',border:false" style="height:20px;background:#f9fafc;;">
+	<div id="southDiv" style="text-align: center"></div>
+</div>
+<div data-options="region:'center'">
+	<div id ="easyui_tabs_id" class="easyui-tabs" data-options="fit:true,border:false,plain:true">
+		<div title="系统首页">
+			<!--<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<div style="color: #3d85c6" align="center" class="dd">欢迎您登录疫情防控-出入管理平台</div>-->
+			<div style="width: 1200px; height: 500px;margin: 0 auto;background-color:#FFFFFF" align="center" >
+				<!--<div id="pic" style="width: 600px;height:200px;" align="center">
+					<img th:src="@{/style/images/homePage/u54.png}" style="width: auto;height: auto" />
+				</div><br/>-->
+				<img th:src="@{/style/images/homePage/u54.png}" style="width: auto;height: auto" />
+				<img th:src="@{/style/images/homePage/u57.png}" style="width: 40%;height: 40%" />
+				<div id="mainPart" style="width: 800px;height:300px;" align="center"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<style>
+	.dd{
+		font-size: 40px;
+	}
+</style>
+</body>
+
+</html>

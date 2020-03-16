@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<body>
+<div style="padding: 15px;">
+    <form id="paramDetail" method="post">
+        <table>
+            <tr>
+                <td>参数名</td>
+                <td><input id="pName" style="width:300px;" name="pName" class="easyui-textbox" data-options="required:true,readonly:'readonly'" th:value="${tbParam.pName}" /></td>
+            </tr>
+
+            <tr>
+                <td>参数值</td>
+                <td><input id="pValue" style="width:300px;" name="pValue"  class="easyui-textbox" data-options="required:true" th:value="${tbParam.pValue}"/></td>
+            </tr>
+
+            <tr>
+                <td>描述</td>
+                <td><input id="pDesc" style="width:300px;" name="pDesc" type="text" class="easyui-textbox" data-options="required:true, validType:'length[1,100]'" th:value="${tbParam.pDesc}"/></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+</div>
+<!--<script>
+    onkeyup="ReplaceDot('pValue')"
+    function ReplaceDot(str) {
+        var Obj = document.getElementById(str);
+        var oldValue = Obj.value;
+        while (oldValue.indexOf("，")!=-1){
+            Obj.value = oldValue.replace("，",",");
+            oldValue = Obj.value;
+        }
+    }
+</script>-->
+</body>
+</html>

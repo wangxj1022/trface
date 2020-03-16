@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common-web.iml" filepath="$PROJECT_DIR$/common-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-web-dao/common-web-dao.iml" filepath="$PROJECT_DIR$/common-web-dao/common-web-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-web-provider/common-web-provider.iml" filepath="$PROJECT_DIR$/common-web-provider/common-web-provider.iml" />
+    </modules>
+  </component>
+</project>

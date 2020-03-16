@@ -1,0 +1,74 @@
+server:
+    port: 9090
+    servlet:
+      context-path: /common-web
+
+#spring
+spring:
+  devtools:
+    #restart:
+      #enabled: true
+    livereload:
+      enabled: true
+  profiles:
+     active: database
+
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+    platform: mysql
+
+    url: jdbc:mysql://127.0.0.1:3306/access_yg?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: trface
+    password: qskt123456
+
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    filters: stat,wall,log4j
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/
+  mail:
+    host: smtp.exmail.qq.com
+    port: 465
+    username: xueym@trendcote.com
+    password: Nfc2GrEtbcze7JZ2
+    properties.mail.smtp.ssl.enable: true
+
+logging:
+  config : classpath:log4j2.xml
+
+rest:
+    http:
+       connectTimeout: 20000
+       readTimeout: 80000
+##device :
+       ##server :
+              ##url1  : http://127.0.0.1:9090/device/addStaff
+              ##url2  : http://127.0.0.1:9090/device/delStaff
+              ##url3  : http://127.0.0.1:9090/device/addVisitor
+              ##url4  : http://127.0.0.1:9090/device/delVisitorInfo
+              ##url5  : http://127.0.0.1:9090/device/addServiceStaff
+              ##url5  : http://127.0.0.1:9090/device/addPersonOne
+              ##url6  : http://127.0.0.1:9090/device/delServiceStaff
+              ##url6  : http://127.0.0.1:9090/device/delPersonOne
+              ##url7  : http://127.0.0.1:9090/device/addStaffByIdCard
+              ##url8  : http://127.0.0.1:9090/device/delStaffByIdCard
+              ##url9  : http://127.0.0.1:9090/device/addStaffkt
+              ##url10  : http://127.0.0.1:9090/device/delStaffkt
+schedule: enable

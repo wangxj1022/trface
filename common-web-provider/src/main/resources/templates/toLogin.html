@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--head部分-->
+<head>
+    <div th:replace="inc :: htmlhead"></div>
+</head>
+<script type="text/javascript">
+    var href = window.location.href;
+    if (href.indexOf("kickout") > 0) {
+        setTimeout("top.location.href=ctx+'/login?kickout';", 0);
+    } else {
+        setTimeout("top.location.href=ctx+'/login';", 0);
+    }
+</script>
+</html>

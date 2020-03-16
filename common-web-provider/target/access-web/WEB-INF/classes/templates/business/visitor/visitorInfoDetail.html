@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<body>
+<div style="padding: 15px">
+    <form id="visitorDetail" method="post">
+        <table>
+            <tr>
+                <td>公司名称</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitor.visitorCompany}" /></td>
+                <td>姓名</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitor.visitorName}" /></td>
+            </tr>
+
+            <tr>
+                <td>性别</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitor.gender}" /></td>
+                <td>职务</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitor.visitorDuty}" /></td>
+            </tr>
+
+            <tr>
+                <td>身份证号</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitor.visitorCardId}" /></td>
+                <td>手机号码</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitor.mobile}" /></td>
+            </tr>
+
+
+            <tr>
+                <td>预约起始时间</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${#dates.format(visitor.inTime,'yyyy-MM-dd hh:mm:ss')}" /></td>
+                <td>预约结束时间</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${#dates.format(visitor.outTime,'yyyy-MM-dd hh:mm:ss')}" /></td>
+            </tr>
+
+            <!--<tr>
+                <td>不良信息</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="无" /></td>
+            </tr>-->
+            <!--
+            <tr>
+                <td>访客车牌号</td> <td><input class="easyui-textbox" data-options="editable:false," th:value="${visitor.vehicleNo            }" /></td>
+            </tr>-->
+        </table>
+    </form>
+</div>
+</div>
+</body>
+</html>

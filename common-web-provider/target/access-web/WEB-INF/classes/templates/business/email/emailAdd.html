@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<body>
+<div style="padding: 15px;">
+    <form id="emailAdd" method="post">
+        <table>
+            <tr>
+                <td>邮箱地址</td>
+                <td><input name="emailAddress" class="easyui-textbox" data-options="required:true,validType:'email' "/></td>
+                <td>用户名</td>
+                <td><input name="emailName" class="easyui-textbox" data-options="required:true,validType:'length[1,5]' " /></td>
+            </tr>
+
+            <tr>
+                <td>备注</td>
+                <td><input name="remark1" type="text" class="easyui-textbox" data-options="validType:'length[1,100]'"/></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+</div>
+</body>
+</html>

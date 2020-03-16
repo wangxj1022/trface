@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div style="padding: 10px;">
+    <form id="resourceEditForm" method="post">
+        <div style="margin-bottom:10px">
+            <input type="hidden"  name="id" th:value="${resource.id}"/>
+            <input class="easyui-textbox" name="name" id="name" style="width: 300px;" data-options="label:'资源名称',required:true,validType:'length[1,50]'" th:value="${resource.name}"></input>
+        </div>
+        <div style="margin-bottom:10px">
+            <select class="easyui-combobox" style="width: 300px;" id="resourceType" name="resourceType" label="资源类型" th:value="${resource.resourceType}">
+                <option value="0">菜单</option>
+                <option value="1">按钮</option>
+            </select>
+        </div>
+        <div style="margin-bottom:10px">
+            <input class="easyui-textbox" name="url" style="width: 300px;" data-options="label:'资源路径',validType:'length[1,90]'" th:value="${resource.url}"/>
+        </div>
+        <div style="margin-bottom:10px">
+            <input class="easyui-numberspinner" name="seq" id="seq" style="width: 300px;" data-options="label:'序列',required:true,editable:false,validType:'length[1,2]'" th:value="${resource.seq}"/>
+        </div>
+        <div style="margin-bottom:10px">
+            <input class="easyui-textbox" style="width:300px" name="description" data-options="label:'描述',validType:'length[1,200]'" th:value="${resource.description}"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

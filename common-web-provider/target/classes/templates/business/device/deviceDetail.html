@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<body>
+<div style="padding: 15px;">
+    <form id="deviceDetail" method="post">
+        <table>
+            <tr>
+                <td>设备编号</td>
+                <td><input name="deviceId" type="text" class="easyui-textbox" data-options="required:true" th:value="${device.deviceId}"/></td>
+                <!--<td><select name="deviceId" id="deviceId" style="width: 165px;"  class="easyui-combobox" data-options="required:true, panelHeight:'auto' " th:value="${device.deviceId}" >
+                    <option th:selected="${device.deviceId == 'TR-710' }" value="TR-710">TR-710</option>
+                    <option th:selected="${device.deviceId == 'TR-660' }" value="TR-660">TR-660</option>
+                </select>-->
+                </td>
+
+                <td>设备名称</td>
+                <td><input name="deviceName" class="easyui-textbox" data-options="required:true,validType:'length[1,10]' " th:value="${device.deviceName}"/></td>
+            </tr>
+
+            <tr>
+                <td>设备IP</td>
+                <td><input name="deviceIp" type="text" class="easyui-textbox" data-options="required:true, validType:'length[7,15]'" th:value="${device.deviceIp}"/></td>
+                <td>设备端口号</td>
+                <td><input name="devicePort" type="text" class="easyui-textbox" data-options="required:true, validType:'length[1,6]'" th:value="${device.devicePort}"/></td>
+            </tr>
+
+            <tr>
+                <td>设备用户名</td>
+                <td><input name="memory" type="text" class="easyui-textbox" data-options="required:true" th:value="${device.memory}"/></td>
+                <td>设备密码</td>
+                <td><input name="disk" type="text" class="easyui-textbox" data-options="required:true" th:value="${device.disk}"/></td>
+            </tr>
+
+            <tr>
+                <td>通道方向</td>
+                <td>
+                    <select name="direction" style="width: 165px;" class="easyui-combobox" data-options="required:true, editable:false, panelHeight:'auto'" th:value="${device.direction}">
+                        <option th:selected="${device.direction == 0 }" value="0">进口</option>
+                        <option th:selected="${device.direction == 1 }" value="1">出口</option>
+                    </select>
+                </td>
+                <td>通道编号</td>
+                <td><input name="passagewayId" class="easyui-textbox" data-options="required:true,validType:'length[1,3]',prompt:'请输入:1-999'" th:value="${device.passagewayId}"/></td>
+            </tr>
+
+            <tr>
+                <td>设备状态</td>
+                <td><select name="activeStatus" id="activeStatus" style="width: 165px;"  class="easyui-combobox" data-options="required:true, panelHeight:'auto' " th:value="${device.activeStatus}" >
+                    <option th:selected="${device.activeStatus == 0 }" value="0">禁用</option>
+                    <option th:selected="${device.activeStatus == 1 }" value="1">启用</option>
+                </select>
+                </td>
+            </tr>
+
+            <!--<tr>
+              &lt;!&ndash;  <td>所属进出口</td>
+                <td><input name="entryId" class="easyui-textbox" data-options="prompt:'例如:E001',required:true,validType:'length[1,4]',readonly:'readonly'" th:value="${device.entryId}" /></td>&ndash;&gt;
+
+            </tr>-->
+
+            <!--<tr>
+                <td>设备ID</td>
+                <td><input name="deviceId" type="text"
+                           placeholder="请输入设备进出设备编号" class="easyui-textbox"
+                           data-options="required:true, validType:'length[1,30]'" th:value="${device.deviceId}"></td>
+                <td>设备类型</td>
+                <td><select name="deviceType" class="easyui-combobox" style="width: 165px;"
+                            data-options="required:true,editable:false,panelHeight:'auto'" th:value="${device.deviceType}">
+                   &lt;!&ndash; <option value="2">闸机</option>
+                    <option value="1">人脸识别柱</option>&ndash;&gt;
+
+                    <option th:selected="${device.deviceType == 1 }" value="1">人脸识别柱</option>
+                    <option th:selected="${device.deviceType == 2 }" value="2">闸机</option>
+                    <option th:selected="${device.deviceType == 4 }" value="4">昆泰28层考勤机</option>
+                    &lt;!&ndash;<option value="1">考勤</option>
+                    <option value="3">门禁</option>
+                    <option value="4">访客</option>&ndash;&gt;
+                </select></td>
+            </tr>-->
+
+            <!--其他字段隐藏-->
+            <div style="display: none">
+                <!--根据ID进行更新-->
+                <input name="id" th:value="${device.id}"/>
+            </div>
+
+        </table>
+    </form>
+</div>
+</div>
+</body>
+</html>

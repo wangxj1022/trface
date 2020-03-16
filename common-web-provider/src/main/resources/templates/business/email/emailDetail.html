@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<body>
+<div style="padding: 15px;">
+    <form id="emailDetail" method="post">
+        <table>
+            <tr>
+                <td>邮箱地址</td>
+                <td><input name="emailAddress" class="easyui-textbox" data-options="prompt:'例如:E001',required:true,validType:'length[1,30]',readonly:'readonly' " th:value="${email.emailAddress}" /></td>
+                <td>用户名</td>
+                <td><input name="emailName" class="easyui-textbox" data-options="required:true,validType:'length[1,5]' " th:value="${email.emailName}"/></td>
+            </tr>
+
+            <tr>
+                <td>备注</td>
+                <td><input name="remark1" type="text" class="easyui-textbox" th:value="${email.remark1}"/></td>
+            </tr>
+
+            <!--其他字段隐藏-->
+            <div style="display: none">
+                <!--根据ID进行更新-->
+                <input name="id" th:value="${email.id}"/>
+            </div>
+        </table>
+    </form>
+</div>
+</div>
+</body>
+</html>

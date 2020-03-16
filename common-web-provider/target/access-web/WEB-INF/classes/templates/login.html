@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/style/images/logo1.png}" rel="shortcut icon"/>
+    <div th:replace="inc :: htmlhead"></div>
+    <link th:href="@{/style/login/css/login.css}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" th:src="@{/jslib/js/tologin.js}" charset="utf-8"></script>
+</head>
+<body>
+<h2>疫情防控-出入门禁管理平台<sup id="vsup"></sup></h2>
+<div class="login">
+    <div class="header">
+        <div class="switch" id="switch">
+            <h3>用户登录</h3>
+        </div>
+    </div>
+    <div class="qlogin" id="qlogin">
+        <div class="web_login">
+            <table>
+                <tr>
+                    <td style="width: 350px;">
+                        <div>
+                            <img th:src="@{/style/login/images/person.jpg}" style=" width: 295px;height: 295px;">
+                        </div>
+                    </td>
+                    <td style="width: 340px; color: #4a95ad;" >
+                        <form id="loginForm" method="post">
+                            <ul class="reg_form" id="reg-ul">
+                                <div id="userCue" class="cue">请输入用户名和密码</div>
+                                <li>
+                                    <label for="username"  class="input-tips2">用户名：</label>
+                                    <div class="inputOuter2">
+                                        <input type="text" id="username" name="username" maxlength="16" class="inputstyle2"/>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label for="password" class="input-tips2">密码：</label>
+                                    <div class="inputOuter2">
+                                        <input type="password" id="password"  name="password" maxlength="16" class="inputstyle2"/>
+                                    </div>
+                                </li>
+                                <!--<li>
+                                    <label for="verifycode" class="input-tips2">验证码：</label>
+                                    <div class="inputOuter2">
+                                        <input type="text" id="verifycode"  name="verifycode" maxlength="5" class="inputstyle3" style="vertical-align:middle"/>
+                                        <a href="javascript:void(0);" onclick="verificationCode()">
+                                            <img id="randCodeImage" alt="验证码"  th:src="@{/kaptcha}" class="inputstyle3" style="padding-left:0px; cursor:pointer; vertical-align:middle"/>
+                                        </a>
+                                    </div>
+                                </li>-->
+                                <li>
+                                    <div class="inputArea">
+                                        <input id="login" type="button" class="button_blue" value="登录" onclick="submitForm()"/>
+                                    </div>
+                                </li>
+                            </ul>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+<div class="jianyi">
+    <div>*推荐使用ie11或以上版本ie浏览器或Chrome内核浏览器或Firefoxe内核浏览器访问本站</div>
+    <div id="vdiv"></div>
+</div>
+</body>
+</html>

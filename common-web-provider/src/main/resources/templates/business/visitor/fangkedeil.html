@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<body>
+<div style="padding: 15px;">
+    <form id="fangkeDetail" method="post">
+        <table>
+            <tr>
+                <td>姓名</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${fangKe.xm}" /></td>
+
+                <td>性别</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${fangKe.xb}" /></td>
+            </tr>
+            <tr>
+                <td>民族</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${fangKe.mz}" />
+                </td>
+
+                <td>生日</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${fangKe.sr}" />
+                </td>
+            </tr>
+            <tr>
+                <td>身份证号</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${fangKe.sfz}" />
+                </td>
+
+                <td>有效期</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${fangKe.yxq}" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>发证机关</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${fangKe.fzjg}" />
+                </td>
+
+                <td>住址</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${fangKe.zz}" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>来自</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${fangKe.province}+ '~'+${fangKe.city}" />
+                </td>
+
+                <td>密切接触史</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:if="${fangKe.iscloser} == 0" value="无" />
+                    <input class="easyui-textbox" data-options="editable:false," th:if="${fangKe.iscloser} == 1" value="有" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>交通方式</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${fangKe.triptype}+'~'+${fangKe.tripno}" />
+                </td>
+
+                <td>体温</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${fangKe.temperature}" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>手机号</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${fangKe.phoneno}" />
+                </td>
+
+                <td>去向</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${fangKe.toaddress}" />
+                </td>
+            </tr>
+            <tr>
+                <td>备注</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${fangKe.memo}" />
+                </td>
+
+                <td>录入时间</td>
+                <td><input class="easyui-textbox" data-options="editable:false," th:value="${#dates.format(fangKe.logtime,'yyyy-MM-dd hh:mm:ss')}" />
+                </td>
+            </tr>
+            <tr>
+                <td th:if="${fangKe.photo}">身份证照片</td>
+                <td th:if="${fangKe.photo}">
+                    <img width=150px height=150px th:src="@{'data:image/png;base64,'+${fangKe.photo}}" />
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+</div>
+</body>
+</html>

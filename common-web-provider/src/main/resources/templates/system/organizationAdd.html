@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div style="padding: 10px;">
+    <form id="organizationAddForm" method="post">
+        <div style="margin-bottom:10px">
+            <input type="hidden"  name="pid" th:value="${pid}"/>
+            <input class="easyui-textbox" style="width: 300px;" th:value="${pname}" data-options="label:'父级机构',readonly:true"/>
+        </div>
+
+        <div style="margin-bottom:10px">
+            <input class="easyui-textbox" name="name" style="width: 300px;" data-options="label:'部门名称',required:true,validType:'length[1,50]'"/>
+        </div>
+
+        <div style="margin-bottom:10px">
+            <input class="easyui-textbox" name="code" style="width: 300px;" data-options="label:'部门代号',validType:'length[1,50]'"/>
+        </div>
+
+        <!--<div style="margin-bottom:10px">
+            <input class="easyui-textbox" name="address" style="width: 300px;" data-options="label:'地址',validType:'length[1,90]'"/>
+        </div>-->
+        <div style="margin-bottom:10px">
+            <input class="easyui-numberspinner" name="seq" style="width: 300px;" data-options="label:'排序序号',editable:false,validType:'length[1,2]'"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>
