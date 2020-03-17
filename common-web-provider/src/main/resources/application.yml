@@ -16,7 +16,6 @@ spring:
 
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    driverClassName: com.mysql.jdbc.Driver
     driver-class-name: com.mysql.jdbc.Driver
     platform: mysql
 
@@ -57,18 +56,4 @@ rest:
     http:
        connectTimeout: 20000
        readTimeout: 80000
-##device :
-       ##server :
-              ##url1  : http://127.0.0.1:9090/device/addStaff
-              ##url2  : http://127.0.0.1:9090/device/delStaff
-              ##url3  : http://127.0.0.1:9090/device/addVisitor
-              ##url4  : http://127.0.0.1:9090/device/delVisitorInfo
-              ##url5  : http://127.0.0.1:9090/device/addServiceStaff
-              ##url5  : http://127.0.0.1:9090/device/addPersonOne
-              ##url6  : http://127.0.0.1:9090/device/delServiceStaff
-              ##url6  : http://127.0.0.1:9090/device/delPersonOne
-              ##url7  : http://127.0.0.1:9090/device/addStaffByIdCard
-              ##url8  : http://127.0.0.1:9090/device/delStaffByIdCard
-              ##url9  : http://127.0.0.1:9090/device/addStaffkt
-              ##url10  : http://127.0.0.1:9090/device/delStaffkt
 schedule: enable

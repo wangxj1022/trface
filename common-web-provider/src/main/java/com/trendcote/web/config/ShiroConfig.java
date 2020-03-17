@@ -8,6 +8,7 @@ import net.sf.ehcache.CacheException;
 import net.sf.ehcache.CacheManager;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.codec.Base64;
 import org.apache.shiro.io.ResourceUtils;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -137,22 +138,26 @@ public class ShiroConfig {
 	 * 设置记住我cookie过期时间
 	 * @return
 	 */
-	@Bean
+	/*@Bean
 	public SimpleCookie remeberMeCookie(){
 		SimpleCookie scookie=new SimpleCookie("rememberMe");
 		//记住我cookie生效时间1小时 ,单位秒
 		scookie.setMaxAge(216000);
 		return scookie;
-	}
+	}*/
 
 	/**
-	 * 配置cookie记住我管理器
+	 * 配置cookie记住我管理器   解决登录报错‘dofinal’ 问题
 	 * @return
 	 */
 	@Bean
 	public CookieRememberMeManager rememberMeManager(){
 		CookieRememberMeManager cookieRememberMeManager=new CookieRememberMeManager();
-		cookieRememberMeManager.setCookie(remeberMeCookie());
+		SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
+		simpleCookie.setMaxAge(259200000);
+		cookieRememberMeManager.setCookie(simpleCookie);
+		cookieRememberMeManager.setCipherKey(Base64.decode("6ZmI6I2j5Y+R5aSn5ZOlAA=="));
+		//cookieRememberMeManager.setCookie(remeberMeCookie());
 		return cookieRememberMeManager;
 	}
 
